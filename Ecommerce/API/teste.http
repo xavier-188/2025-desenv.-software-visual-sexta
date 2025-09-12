@@ -1,15 +1,18 @@
 ### Requisição para a raiz
-GET http://localhost:5011/
+GET http://localhost:5194/
 
 ### Listar todos os produtos
-GET http://localhost:5011/api/produto/listar
+GET http://localhost:5194/api/produto/listar
 
 ### Cadastrar o produto
-POST http://localhost:5011/api/produto/cadastrar
+POST http://localhost:5194/api/produto/cadastrar
 Content-Type: application/json
 
 {
-    "nome" : "Mouse",
-    "quantidade" : 123,
-    "preco" : 85.5
+    "nome" : "Geladeira",
+    "quantidade" : 12,
+    "preco" : 1500
 }
+
+### Buscar um produto
+GET http://localhost:5194/api/produto/buscar
