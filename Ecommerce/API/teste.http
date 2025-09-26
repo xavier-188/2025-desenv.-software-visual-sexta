@@ -9,16 +9,19 @@ POST http://localhost:5194/api/produto/cadastrar
 Content-Type: application/json
 
 {
-    "nome" : "Geladeira",
+    "nome" : "Mouse",
+    "descricao" : "Logitech",
     "quantidade" : 12,
-    "preco" : 1500
+    "preco" : 300
 }
 
-### Buscar um produto
-GET http://localhost:5194/api/produto/buscar/Monitor
+
+
+### Buscar um produto pelo id
+GET http://localhost:5194/api/produto/buscar/f6ac3efb-de89-48ee-b36f-e4ca79484c06
 
 ### Remover um produto
-DELETE  http://localhost:5194/api/produto/remover/Monitor
+DELETE  http://localhost:5194/api/produto/remover/Geladeira
 
 ###Alterar um produto
 

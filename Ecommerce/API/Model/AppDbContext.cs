@@ -11,16 +11,18 @@ namespace API.Model;
 //1-Criar a herança da classe DbContext
 //2-Criar os atributos que vão representar as tabelas do Banco de Dados
 
-    public class AppDbContext : DbContext
-    {
-        public DbSet<Produto> Produtos { get; set; }
+//Entity Framework: Code First
+
+public class AppDbContext : DbContext
+{
+    public DbSet<Produto> Produtos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data Source=Ecommerce.db");
     }
 
-    
 
-        
-    }
+
+
+}
