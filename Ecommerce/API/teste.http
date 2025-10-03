@@ -18,18 +18,18 @@ Content-Type: application/json
 
 
 ### Buscar um produto pelo id
-GET http://localhost:5194/api/produto/buscar/f6ac3efb-de89-48ee-b36f-e4ca79484c06
+GET http://localhost:5194/api/produto/buscar/2474d1de-6b8f-4ec9-94f1-2643e54dd187
 
 ### Remover um produto
-DELETE  http://localhost:5194/api/produto/remover/Geladeira
+DELETE  http://localhost:5194/api/produto/remover/2474d1de-6b8f-4ec9-94f1-2643e54dd187
 
 ###Alterar um produto
 
-PATCH  http://localhost:5194/api/produto/alterar/a7e9d4aa-1c0e-4c70-aba3-db1c1aecd908
+PATCH  http://localhost:5194/api/produto/alterar/2474d1de-6b8f-4ec9-94f1-2643e54dd187
 Content-Type: application/json
 
 {
-    "nome" : "Iphone 12",
+    "nome" : "Pc gamer",
     "quantidade" : 10,
     "preco" : 2000
 }

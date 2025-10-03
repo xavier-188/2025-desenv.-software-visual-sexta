@@ -12,14 +12,14 @@ builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 
-List<Produto> produtos = new List<Produto>()
-{
-    new Produto { Nome = "Notebook", Quantidade = 10, Preco = 3500.00 },
-    new Produto { Nome = "Smartphone", Quantidade = 25, Preco = 2200.00 },
-    new Produto { Nome = "Fone de Ouvido", Quantidade = 50, Preco = 199.90 },
-    new Produto { Nome = "Monitor", Quantidade = 15, Preco = 899.99 },
-    new Produto { Nome = "Teclado Mecânico", Quantidade = 20, Preco = 350.00 }
-};
+List<Produto> produtos = new List<Produto>();
+// {
+//     new Produto { Nome = "Notebook", Quantidade = 10, Preco = 3500.00 },
+//     new Produto { Nome = "Smartphone", Quantidade = 25, Preco = 2200.00 },
+//     new Produto { Nome = "Fone de Ouvido", Quantidade = 50, Preco = 199.90 },
+//     new Produto { Nome = "Monitor", Quantidade = 15, Preco = 899.99 },
+//     new Produto { Nome = "Teclado Mecânico", Quantidade = 20, Preco = 350.00 }
+// };
 
 //Funcionalidades
 //Requisições
@@ -81,7 +81,7 @@ app.MapPost("/api/produto/cadastrar", ([FromBody] Produto produto, [FromServices
 app.MapGet("/api/produto/buscar/{id}", ([FromRoute] string id, [FromServices] AppDbContext ctx) =>
 {
     //Expressão Lambda
-    Produto? produtoBuscado = ctx.Produtos.Find(id);
+    Produto? produtoBuscado = ctx.Produtos.Find(id); //Find busca a chave primária.
 
     if (produtoBuscado == null)
     {
@@ -91,10 +91,10 @@ app.MapGet("/api/produto/buscar/{id}", ([FromRoute] string id, [FromServices] Ap
 });
 
 //Remover Produto
-app.MapDelete("/api/produto/remover/{nome}", ([FromRoute] string nome, [FromServices] AppDbContext ctx) =>
+app.MapDelete("/api/produto/remover/{id}", ([FromRoute] string id, [FromServices] AppDbContext ctx) =>
 {
     //Expressão Lambda
-    Produto? produtoBuscado = produtos.FirstOrDefault(p => p.Nome == nome);
+    Produto? produtoBuscado = ctx.Produtos.Find(id);
 
     if (produtoBuscado == null)
     {
@@ -102,16 +102,19 @@ app.MapDelete("/api/produto/remover/{nome}", ([FromRoute] string nome, [FromServ
     }
 
     produtos.Remove(produtoBuscado);
-
+    ctx.SaveChanges();
     return Results.Ok("Produto Removido!");
 });
 
 
 //Alterar um produto pelo id
-app.MapPatch("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Produto produtoAlterado) =>
+app.MapPatch("/api/produto/alterar/{id}", (
+[FromRoute] string id,
+[FromBody] Produto produtoAlterado,
+[FromServices] AppDbContext ctx) =>
 {
     //Expressão Lambda
-    Produto? produtoBuscado = produtos.FirstOrDefault(p => p.Id == id);
+    Produto? produtoBuscado = ctx.Produtos.Find(id);
 
     if (produtoBuscado == null)
     {
@@ -121,6 +124,8 @@ app.MapPatch("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Pro
     produtoBuscado.Nome = produtoAlterado.Nome;
     produtoBuscado.Quantidade = produtoAlterado.Quantidade;
     produtoBuscado.Preco = produtoAlterado.Preco;
+    ctx.Produtos.Update(produtoBuscado);
+    ctx.SaveChanges();
 
 
     return Results.Ok("Produto alterado com sucesso!");
