@@ -10,6 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 //Adicionar o serviço de banco de dados na aplicação.
 builder.Services.AddDbContext<AppDbContext>();
 
+builder.Services.AddCors(options =>
+  options.AddPolicy("Acesso Total",
+    configs => configs
+      .AllowAnyOrigin()
+      .AllowAnyHeader()
+      .AllowAnyMethod())
+);
+
 var app = builder.Build();
 
 List<Produto> produtos = new List<Produto>();
@@ -132,6 +140,7 @@ app.MapPatch("/api/produto/alterar/{id}", (
 
 });
 
+app.UseCors("Acesso Total");
 
 app.Run();
 

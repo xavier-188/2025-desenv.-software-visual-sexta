@@ -9,8 +9,8 @@ POST http://localhost:5194/api/produto/cadastrar
 Content-Type: application/json
 
 {
-    "nome" : "Mouse",
-    "descricao" : "Logitech",
+    "nome" : "Placa de Video",
+    "descricao" : "Nvidea",
     "quantidade" : 12,
     "preco" : 300
 }
