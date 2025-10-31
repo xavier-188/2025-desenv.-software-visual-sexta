@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Produto from "../../../models/Produto";
+import axios from "axios";
 
 function CadastrarProduto() {
 
@@ -17,7 +18,6 @@ function CadastrarProduto() {
         //Biblioteca AXIOS
 
         try {
-
             const produto: Produto = {
                 nome: nome,
                 descricao: descricao,
@@ -26,30 +26,23 @@ function CadastrarProduto() {
             };
 
             const resposta =
-                await fetch("http://localhost:5194/api/produto/cadastrar", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(produto)
-                }
-              );
-              if(!resposta.ok){
-                throw new Error("Erro ao cadastrar o produto: " + resposta.statusText);
+                await axios.post("http://localhost:5194/api/produto/cadastrar", produto);
+              console.log(await resposta.data);
+            } catch (error: any) {
+              if(error.status === 409){
+                console.log("Esse produto já foi cadastrado");
               }
-              console.log(resposta.json());
-        } catch (error) {
-          console.log("Erro no cadastro do produto" + error)
-        }
+            }
+            
+          }
+          
+          function escreverNome(e: any) {
+            setNome(e.target.value);
+          }
 
-
-
-
-    }
-
-    function escreverNome(e: any) {
-        setNome(e.target.value);
-    }
+          // if(!resposta.data){
+          //   throw new Error("Erro ao cadastrar o produto: " + resposta.statusText);
+          // }
     return (
         <div>
             <h1>Cadastrar Produto</h1>
