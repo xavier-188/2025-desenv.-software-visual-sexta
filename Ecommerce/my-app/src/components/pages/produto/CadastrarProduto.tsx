@@ -36,9 +36,6 @@ function CadastrarProduto() {
             
           }
           
-          function escreverNome(e: any) {
-            setNome(e.target.value);
-          }
 
           // if(!resposta.data){
           //   throw new Error("Erro ao cadastrar o produto: " + resposta.statusText);
@@ -49,7 +46,7 @@ function CadastrarProduto() {
             <form onSubmit={enviarProduto}>
                 <div>
                     <label>Nome:</label>
-                    <input onChange={escreverNome} type="text" />
+                    <input onChange={(e : any) => setNome(e.target.value)} type="text" />
                 </div>
                 <div>
                     <label>Descrição:</label>

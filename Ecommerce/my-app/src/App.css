@@ -1,127 +1,162 @@
-/* Estilos gerais */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+/* 
+.topbar {
+  background: #0077cc;
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#app {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.topbar nav a {
+  color: white;
+  margin-left: 16px;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-/* Navegação */
-nav {
-    background-color: #333;
-    padding: 15px;
+.topbar nav a:hover {
+  text-decoration: underline;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+.logo {
+  font-size: 1.3rem;
 }
 
-nav ul li {
-    margin-right: 20px;
+.container {
+  padding: 20px;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 8px 16px;
+.footer {
+  text-align: center;
+  padding: 12px;
+  background: #e5e7eb;
+  color: #555;
+  margin-top: 40px;
+  font-size: 0.9rem;
 }
 
-nav ul li a:hover {
-    background-color: #444;
-    border-radius: 4px;
+
+.msg {
+  background: #d1e7dd;
+  color: #0f5132;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
 }
 
-/* Tabela de produtos */
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
+.form input {
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-th {
-    background-color: #f4f4f4;
-    color: #333;
+
+.btn-primary {
+  background: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+.btn-primary:hover {
+  background: #005fa3;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
-/* Formulário de cadastro */
-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+.tabela th, .tabela td {
+  padding: 10px;
+  text-align: left;
 }
 
-form div {
-    margin-bottom: 15px;
+.tabela th {
+  background: #0077cc;
+  color: white;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #555;
+.tabela tr:nth-child(even) {
+  background: #f9fafb;
 }
 
-input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+.tabela tr:hover {
+  background: #eef3f8;
 }
 
-input[type="text"]:focus, input[type="number"]:focus {
-    outline: none;
-    border-color: #333;
+.btn-edit, .btn-delete {
+  margin-right: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
-button[type="submit"] {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.btn-delete:hover {
+  color: #c53030;
 }
 
-button[type="submit"]:hover {
-    background-color: #218838;
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Rodapé */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    bottom: 0;
-    width: 100%;
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-cancel {
+  background: #e5e7eb;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.btn-danger {
+  background: #c53030;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+} */ 

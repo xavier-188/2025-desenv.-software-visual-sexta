@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Produto from "../../../models/Produto";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 //Componente
 // - Composto por HTML, CSS e JS ou TS
@@ -20,15 +21,27 @@ function ListarProdutos() {
     buscarProdutosAPI();
   }, []);
 
- async function buscarProdutosAPI() {
+  async function buscarProdutosAPI() {
     try {
       const resposta = await axios.get("http://localhost:5194/api/produto/listar");
       setProdutos(resposta.data);
-      
+
     } catch (error) {
       console.log("Erro na requisição: " + error);
     }
   }
+
+  async function deletarProduto(id: string) {
+    try {
+      const resposta = await axios.delete("http://localhost:5194/api/produto/remover/" + id);
+      buscarProdutosAPI();
+
+    } catch (error) {
+      console.log("Erro ao remover produto: " + error);
+    }
+  }
+
+
 
   //O return é a parte visual do componente
   return (
@@ -43,6 +56,8 @@ function ListarProdutos() {
             <th>Quantidade</th>
             <th>Preço</th>
             <th>Criado Em</th>
+            <th>Remover</th>
+            <th>Alterar</th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +69,8 @@ function ListarProdutos() {
               <td>{produto.quantidade}</td>
               <td>{produto.preco}</td>
               <td>{produto.criadoEm}</td>
+              <td><button onClick={() => deletarProduto(produto.id!)}>Remover</button></td>
+              <td><Link to={`/produto/alterar/${produto.id}`}>Alterar</Link></td>
             </tr>
           ))}
         </tbody>

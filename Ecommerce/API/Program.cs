@@ -109,7 +109,7 @@ app.MapDelete("/api/produto/remover/{id}", ([FromRoute] string id, [FromServices
         return Results.NotFound("Produto não encontrado");
     }
 
-    produtos.Remove(produtoBuscado);
+    ctx.Produtos.Remove(produtoBuscado);
     ctx.SaveChanges();
     return Results.Ok("Produto Removido!");
 });
@@ -132,6 +132,7 @@ app.MapPatch("/api/produto/alterar/{id}", (
     produtoBuscado.Nome = produtoAlterado.Nome;
     produtoBuscado.Quantidade = produtoAlterado.Quantidade;
     produtoBuscado.Preco = produtoAlterado.Preco;
+    produtoBuscado.Descricao = produtoAlterado.Descricao;
     ctx.Produtos.Update(produtoBuscado);
     ctx.SaveChanges();
 

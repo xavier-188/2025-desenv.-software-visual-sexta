@@ -4,6 +4,7 @@ import CadastrarProduto from './components/pages/produto/CadastrarProduto';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './App.css';
+import AlterarProduto from './components/pages/produto/AlterarProduto';
 
 //Componentes
 // - HTML, CSS e JS ou TS
@@ -20,9 +21,10 @@ function App() {
       <Routes>
         <Route path="/" element={<ListarProdutos/>}/>
         <Route path="/produto/cadastrar" element={<CadastrarProduto/>}/>
+        <Route path="/produto/alterar/:id" element={<AlterarProduto/>}/>
       </Routes>
       <footer>
-        Rodapé da Aplicação
+        Ecommerce
       </footer>
       </BrowserRouter>
     </div>
